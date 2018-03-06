@@ -16,5 +16,7 @@ public class CompareVo {
     private Long localSum;
 
     private Long remoteSum;
+    //状态 1 金额不平，2 本地不存在，3 医保中心不存在
+    private Integer status;
 
 }

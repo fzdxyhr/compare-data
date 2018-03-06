@@ -32,13 +32,14 @@
         </div>
         <div class="form-group" align="center">
             <button type="button" @click="upload" class="btn btn-default">开始比对</button>
+            <button type="button" @click="exportData" class="btn btn-default">导出数据</button>
         </div>
     </form>
     <div>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>姓名</th><th>身份证号</th><th>本地金额</th><th>医保中心金额</th>
+                <th>姓名</th><th>身份证号</th><th>本地金额</th><th>医保中心金额</th><th>状态</th>
             </tr>
             </thead>
             <tbody v-for="install in install_items">
@@ -47,6 +48,9 @@
                 <td>{{install.id_card}}</td>
                 <td>{{install.local_sum}}</td>
                 <td>{{install.remote_sum}}</td>
+                <td v-if="install.status == 1">金额不平</td>
+                <td v-if="install.status == 2">本地不存在</td>
+                <td v-if="install.status == 3">医保中心不存在</td>
             </tr>
             </tbody>
         </table>
@@ -109,6 +113,10 @@
                         alert("异常！");
                     }
                 });
+            },
+            exportData:function(){
+                console.log("export");
+                window.location.href = "/v1/export";
             }
         }
     });
